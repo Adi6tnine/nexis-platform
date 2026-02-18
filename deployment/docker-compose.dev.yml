@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: nexis-backend-dev
+    environment:
+      - DATABASE_URL=sqlite:///./nexis.db
+      - SECRET_KEY=dev-secret-key
+      - ENVIRONMENT=development
+      - BACKEND_CORS_ORIGINS=["http://localhost:3000","http://localhost:5173"]
+    volumes:
+      - ../backend:/app
+      - ../backend/models:/app/models
+    ports:
+      - "8000:8000"
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    restart: unless-stopped
+
+  # Frontend
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: nexis-frontend-dev
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/v1
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    command: npm run dev -- --host 0.0.0.0
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+networks:
+  default:
+    name: nexis-dev-network

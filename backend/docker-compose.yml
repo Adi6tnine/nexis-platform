@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./nexis.db
+      - ENVIRONMENT=production
+    volumes:
+      - ./models:/app/models
+      - ./nexis.db:/app/nexis.db
+    restart: unless-stopped
+
+  # Optional: PostgreSQL for production
+  # postgres:
+  #   image: postgres:15-alpine
+  #   environment:
+  #     POSTGRES_USER: nexis
+  #     POSTGRES_PASSWORD: nexis_password
+  #     POSTGRES_DB: nexis
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+# volumes:
+#   postgres_data:

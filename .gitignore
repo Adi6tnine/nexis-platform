@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# ML Models
+backend/models/*.pkl
+backend/models/*.joblib
+
+# Environment
+.env
+.env.local
+backend/.env
+frontend/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Build outputs
+dist/
+build/
+*.tgz
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Archive/Old Documentation (keep locally, don't commit)
+docs/archive/
+*_COMPLETE.md
+*_FIX.md
+*_UPGRADE*.md
+*_STATUS.md
+WORK_COMPLETED.txt
+tempCodeRunnerFile.bat
+
+# Keep only essential docs in root
+# All other docs should be in docs/ folder
