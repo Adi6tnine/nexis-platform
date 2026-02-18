@@ -41,6 +41,11 @@ class Settings(BaseSettings):
     PHONE_PREFIX: str = "+91"
     TIMEZONE: str = "Asia/Kolkata"
     
+    # Model paths
+    MODEL_PATH: str = "models/credit_trust_model.pkl"
+    SCALER_PATH: str = "models/feature_scaler.pkl"
+    EXPLAINER_PATH: str = "models/shap_explainer.pkl"
+    
     class Config:
         env_file = ".env"
         case_sensitive = True
