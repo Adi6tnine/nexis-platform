@@ -12,6 +12,11 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Set environment variables first
+ENV PATH=/root/.local/bin:$PATH
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
 # Copy dependencies from builder
 COPY --from=builder /root/.local /root/.local
 
@@ -26,10 +31,6 @@ RUN python train_model.py
 
 # Expose port
 EXPOSE 8000
-
-# Set environment
-ENV PATH=/root/.local/bin:$PATH
-ENV PYTHONUNBUFFERED=1
 
 # Run application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
